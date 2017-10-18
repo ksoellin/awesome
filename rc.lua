@@ -114,7 +114,8 @@ myawesomemenu = {
 }
 
 mygnomemenu = {
-   { "Gnome Settings", "gnome-control-center"}
+   { "Gnome Settings", "gnome-control-center"},
+   { "Gnome File Manager", "nautilus"}
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
@@ -348,7 +349,11 @@ globalkeys = gears.table.join(
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "launcher"}),
+
+    -- custom shortcuts
+    awful.key({ modkey }, "e", function() awful.spawn("nautilus") end,
+              {description = "launch file manager", group = "launcher"})
 )
 
 clientkeys = gears.table.join(
