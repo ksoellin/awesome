@@ -113,7 +113,12 @@ myawesomemenu = {
    { "quit", function() awesome.quit() end}
 }
 
+mygnomemenu = {
+   { "Gnome Settings", "gnome-control-center"}
+}
+
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+                                    { "Gnome", mygnomemenu },
                                     { "open terminal", terminal }
                                   }
                         })
