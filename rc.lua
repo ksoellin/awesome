@@ -353,7 +353,9 @@ globalkeys = gears.table.join(
 
     -- custom shortcuts
     awful.key({ modkey }, "e", function() awful.spawn("nautilus") end,
-              {description = "launch file manager", group = "launcher"})
+              {description = "launch file manager", group = "launcher"}),
+    awful.key({ modkey }, "F12", function() awful.spawn("gnome-screensaver-command -l") end,
+              {description = "lock screen", group = "launcher"})
 )
 
 clientkeys = gears.table.join(
@@ -582,3 +584,15 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- Autostart following
+do
+  local cmds =
+  {
+    "gnome-screensaver"
+  }
+
+  for _,i in pairs(cmds) do
+    awful.spawn(i)
+  end
+end
