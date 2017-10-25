@@ -58,7 +58,9 @@ beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 -- terminal = "xterm"
 terminal = "gnome-terminal"
 editor = os.getenv("EDITOR") or "nano"
-editor_cmd = terminal .. " -e " .. editor
+run_cmd = function(cmd)
+    return terminal .. " -e \"" .. cmd:gsub("\"", "\\\"") .. "\""
+end
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -107,8 +109,8 @@ end
 -- Create a launcher widget and a main menu
 myawesomemenu = {
    { "hotkeys", function() return false, hotkeys_popup.show_help end},
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
+   { "manual", run_cmd("man awesome") },
+   { "edit config", run_cmd(editor .. " " .. awesome.conffile) },
    { "restart", awesome.restart },
    { "quit", function() awesome.quit() end}
 }
@@ -120,6 +122,7 @@ mygnomemenu = {
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "Gnome", mygnomemenu },
+                                    { "Edit Config Gedit", function() awful.util.spawn("gedit " ..  awesome.conffile) end },
                                     { "open terminal", terminal }
                                   }
                         })
