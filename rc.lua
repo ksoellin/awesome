@@ -592,7 +592,8 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 do
   local cmds =
   {
-    "gnome-screensaver"
+    "gnome-screensaver",
+    "xautolock -time 1 -locker \"gnome-screensaver-command -l\" -notify 10 -notifier notify-send -noclose"
   }
 
   for _,i in pairs(cmds) do
