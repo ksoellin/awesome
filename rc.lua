@@ -593,7 +593,7 @@ do
   local cmds =
   {
     "gnome-screensaver",
-    "xautolock -time 1 -locker \"gnome-screensaver-command -l\" -notify 10 -notifier notify-send -noclose"
+    "xautolock -time 5 -locker \"gnome-screensaver-command -l\" -notify 10 -notifier notify-send -noclose"
   }
 
   for _,i in pairs(cmds) do
