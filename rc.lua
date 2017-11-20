@@ -262,6 +262,40 @@ globalkeys = gears.table.join(
               {description = "view previous", group = "tag"}),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
               {description = "view next", group = "tag"}),
+    awful.key({ modkey, "Shift"   }, "Left",
+              function()
+                  if client.focus then
+                      local destTag = nil
+                      local currIndex = awful.tag.selected().index;
+                      if client.focus.screen.tags[currIndex-1] then
+                          destTag = client.focus.screen.tags[currIndex-1]
+                      else
+                          local i=1
+                          while client.focus.screen.tags[i+1] do i = i+1 end
+                          destTag = client.focus.screen.tags[i]
+                      end
+                      client.focus:move_to_tag(destTag)
+                      awful.tag.viewprev()
+                  end
+              end,
+              {description = "move focused client to pervious tag", group = "tag"}),
+    awful.key({ modkey, "Shift"   }, "Right",
+              function()
+                  if client.focus then
+                      local destTag = nil
+                      local currIndex = awful.tag.selected().index;
+                      if client.focus.screen.tags[currIndex+1] then
+                          destTag = client.focus.screen.tags[currIndex+1]
+                      else
+                          local i=1
+                          while client.focus.screen.tags[i-1] do i = i+-1 end
+                          destTag = client.focus.screen.tags[i]
+                      end
+                      client.focus:move_to_tag(destTag)
+                      awful.tag.viewnext()
+                  end
+              end,
+              {description = "move focused client to next tag", group = "tag"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
 
