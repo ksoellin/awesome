@@ -392,7 +392,9 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "e", function() awful.spawn("nautilus") end,
               {description = "launch file manager", group = "launcher"}),
     awful.key({ modkey }, "F12", function() awful.spawn("gnome-screensaver-command -l") end,
-              {description = "lock screen", group = "launcher"})
+              {description = "lock screen", group = "launcher"}),
+    awful.key({ modkey, "Control" }, "p",      function() awful.spawn("VBoxManage controlvm 94ae19ea-12fa-4484-b5ec-90c986f59541 keyboardputscancode 39 b9") end,
+              {description = "Play/Pause Amazon Musik", group = "music"})
 )
 
 clientkeys = gears.table.join(
