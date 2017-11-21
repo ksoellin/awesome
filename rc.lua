@@ -393,8 +393,12 @@ globalkeys = gears.table.join(
               {description = "launch file manager", group = "launcher"}),
     awful.key({ modkey }, "F12", function() awful.spawn("gnome-screensaver-command -l") end,
               {description = "lock screen", group = "launcher"}),
-    awful.key({ modkey, "Control" }, "p",      function() awful.spawn("VBoxManage controlvm 94ae19ea-12fa-4484-b5ec-90c986f59541 keyboardputscancode 39 b9") end,
-              {description = "Play/Pause Amazon Musik", group = "music"})
+    awful.key({ modkey, "Control" }, "F10",      function() awful.spawn("VBoxManage controlvm 94ae19ea-12fa-4484-b5ec-90c986f59541 keyboardputscancode 39 b9") end,
+              {description = "Play/Pause Amazon Musik", group = "amazon music"}),
+    awful.key({ modkey, "Control" }, "F9",       function() awful.spawn("VBoxManage controlvm 94ae19ea-12fa-4484-b5ec-90c986f59541 keyboardputscancode e0 4b e0 cb") end,
+              {description = "Play previous Song", group = "amazon music"}),
+    awful.key({ modkey, "Control" }, "F11",       function() awful.spawn("VBoxManage controlvm 94ae19ea-12fa-4484-b5ec-90c986f59541 keyboardputscancode e0 4d e0 cd") end,
+              {description = "Play previous Song", group = "amazon music"})
 )
 
 clientkeys = gears.table.join(
