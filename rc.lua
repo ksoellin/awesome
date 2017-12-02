@@ -392,7 +392,12 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "e", function() awful.spawn("nautilus") end,
               {description = "launch file manager", group = "launcher"}),
     awful.key({ modkey }, "F12", function() awful.spawn("gnome-screensaver-command -l") end,
-              {description = "lock screen", group = "launcher"})
+              {description = "lock screen", group = "launcher"}),
+    -- keynames found by: xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+    awful.key({ }, "XF86AudioLowerVolume", function() awful.spawn("pamixer -d 5") end,
+              {description = "decrease sound volume", group = "music"}),
+    awful.key({ }, "XF86AudioRaiseVolume", function() awful.spawn("pamixer -i 5") end,
+              {description = "decrease sound volume", group = "music"})
 )
 
 clientkeys = gears.table.join(
