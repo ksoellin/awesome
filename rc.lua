@@ -397,7 +397,7 @@ globalkeys = gears.table.join(
     awful.key({ }, "XF86AudioLowerVolume", function() awful.spawn("pamixer -d 5") end,
               {description = "decrease sound volume", group = "music"}),
     awful.key({ }, "XF86AudioRaiseVolume", function() awful.spawn("pamixer -i 5") end,
-              {description = "decrease sound volume", group = "music"})
+              {description = "increase sound volume", group = "music"})
 )
 
 clientkeys = gears.table.join(
