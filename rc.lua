@@ -19,10 +19,17 @@ local battery = battery_widget({
     adapter = "BAT0",
     battery_prefix = "Bat: ",
     limits = {
-        { 25, "red"   },
-        { 50, "orange"},
-        { 75, "yellow"},
-        {100, "green" }
+        { 10, "#FF0000" }, -- dark red
+        { 15, "#FF3333" }, -- red
+        { 20, "#FF6666" }, -- light red
+        { 30, "#FF4000" }, -- orange/light red
+        { 40, "#FF6633" }, -- even darker orange
+        { 50, "#FF8000" }, -- darker orange
+        { 60, "#FFBF00" }, -- light orange
+        { 75, "#FFFF00" }, -- yellow
+        { 80, "#808000" }, -- green/yellow
+        { 95, "#008000" }, -- dark green
+        {100, "#006600" }  -- darker green
     },
     listen = true,
     timeout = 10,
