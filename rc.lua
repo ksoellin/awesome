@@ -135,7 +135,13 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+local layout_indicator = require("keyboard-layout-indicator")
+kbdcfg = layout_indicator({
+    layouts = {
+        {name="de",  layout="de",  variant=nil},
+        {name="us",  layout="us",  variant=nil}
+    }
+})
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -237,7 +243,7 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
+            kbdcfg.widget,
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
@@ -398,7 +404,9 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Control" }, "F9",       function() awful.spawn("VBoxManage controlvm 94ae19ea-12fa-4484-b5ec-90c986f59541 keyboardputscancode e0 4b e0 cb") end,
               {description = "Play previous Song", group = "amazon music"}),
     awful.key({ modkey, "Control" }, "F11",       function() awful.spawn("VBoxManage controlvm 94ae19ea-12fa-4484-b5ec-90c986f59541 keyboardputscancode e0 4d e0 cd") end,
-              {description = "Play previous Song", group = "amazon music"})
+              {description = "Play previous Song", group = "amazon music"}),
+    awful.key({ "Mod1" }, "Shift_L", function() kbdcfg:next() end,
+              {description = "next keyboard layout", group = "laucher"})
 )
 
 clientkeys = gears.table.join(
