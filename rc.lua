@@ -135,7 +135,13 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+local layout_indicator = require("keyboard-layout-indicator")
+kbdcfg = layout_indicator({
+    layouts = {
+        {name="de",  layout="de",  variant=nil},
+        {name="us",  layout="us",  variant=nil}
+    }
+})
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -237,7 +243,7 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
+            kbdcfg.widget,
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
@@ -392,7 +398,9 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "e", function() awful.spawn("nautilus") end,
               {description = "launch file manager", group = "launcher"}),
     awful.key({ modkey }, "F12", function() awful.spawn("gnome-screensaver-command -l") end,
-              {description = "lock screen", group = "launcher"})
+              {description = "lock screen", group = "launcher"}),
+    awful.key({ "Mod1" }, "Shift_L", function() kbdcfg:next() end,
+              {description = "next keyboard layout", group = "laucher"})
 )
 
 clientkeys = gears.table.join(
