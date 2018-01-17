@@ -400,13 +400,19 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "F12", function() awful.spawn("gnome-screensaver-command -l") end,
               {description = "lock screen", group = "launcher"}),
     awful.key({ modkey, "Control" }, "F10",      function() awful.spawn("VBoxManage controlvm 94ae19ea-12fa-4484-b5ec-90c986f59541 keyboardputscancode 39 b9") end,
-              {description = "Play/Pause Amazon Musik", group = "amazon music"}),
+              {description = "Play/Pause Amazon Musik", group = "music"}),
     awful.key({ modkey, "Control" }, "F9",       function() awful.spawn("VBoxManage controlvm 94ae19ea-12fa-4484-b5ec-90c986f59541 keyboardputscancode e0 4b e0 cb") end,
-              {description = "Play previous Song", group = "amazon music"}),
+              {description = "Play previous Song", group = "music"}),
     awful.key({ modkey, "Control" }, "F11",       function() awful.spawn("VBoxManage controlvm 94ae19ea-12fa-4484-b5ec-90c986f59541 keyboardputscancode e0 4d e0 cd") end,
-              {description = "Play previous Song", group = "amazon music"}),
+              {description = "Play previous Song", group = "music"}),
     awful.key({ "Mod1" }, "Shift_L", function() kbdcfg:next() end,
               {description = "next keyboard layout", group = "laucher"})
+  , awful.key({ modkey, "Control" }, "F2", function() awful.spawn("playerctl previous") end,
+              {description = "Spotify: Play previous Song", group = "music"})
+  , awful.key({ modkey, "Control" }, "F3", function() awful.spawn("playerctl play-pause") end,
+              {description = "Spotify: Play/Pause current Song", group = "music"})
+  , awful.key({ modkey, "Control" }, "F4", function() awful.spawn("playerctl next") end,
+              {description = "Spotify: Play next Song", group = "music"})
 )
 
 clientkeys = gears.table.join(
